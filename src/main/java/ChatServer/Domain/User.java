@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package ChatServer.Domain;
+import javax.ws.rs.GET;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -27,8 +28,24 @@ public class User {
         this.name = name;
     }
     
+    public User(Long id, String name, Conversation conversation){
+    this.id = id;
+    this.name = name;
+    this.conversation = conversation;
+    }
+    
+    @GET
     public Long getId(){
         return id;
     }
     
+    @GET
+    public String getName(){
+    return name;
+    }
+    
+    @GET
+    public Conversation getConversation(){
+    return conversation;
+    }
 }
