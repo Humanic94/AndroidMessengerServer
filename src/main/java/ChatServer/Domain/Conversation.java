@@ -6,6 +6,7 @@
 package ChatServer.Domain;
 import java.util.ArrayList;
 import java.util.List;
+import javax.ws.rs.GET;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -17,12 +18,30 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Conversation {
+    private Long conversationId;
+    private String conversationName;
     private List<Message> conversation;
     
-    public Conversation(){
+    protected Conversation(){
+        
+    }
+    public Conversation(Long conversationId, String conversationName){
         conversation = new ArrayList<Message>();
+        this.conversationId = conversationId;
+        this.conversationName = conversationName;
     }
     
+    @GET
+    public Long getConversationId(){
+    return conversationId;
+    }
+    
+    @GET
+    public String getConversationName(){
+    return conversationName;
+    }
+    
+    @GET
     public List<Message> getConversation(){
     return conversation;
     }
