@@ -5,7 +5,9 @@
  */
 package ChatServer.Domain;
 
+import static com.oracle.webservices.internal.api.EnvelopeStyle.Style.XML;
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -17,35 +19,34 @@ import javax.xml.bind.annotation.XmlRootElement;
  *
  * @author Humanic
  */
-@Entity
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Message implements Serializable {
+@Entity
+public class Customer implements Serializable {
     @Id @GeneratedValue
-    Long messageId;
-    String messageSender;
-    String message = "";
+    @Column(name = "CUSTOMER_ID")
+    Long id;
+    String name;
+    String phone;
 
-    protected Message() {
+    public Customer() {
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
     
     
-    public Message(Long messageId, String messageSender, String message){
-        this.message = message;
-        this.messageId = messageId;
-        this.messageSender = messageSender;
-    }
-
-    public Long getMessageId() {
-        return messageId;
-    }
-
-    public String getMessageSender() {
-        return messageSender;
-    }
-    
-    public String getMessage(){
-    return message;
-    }
 }

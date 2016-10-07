@@ -4,6 +4,10 @@
  * and open the template in the editor.
  */
 package ChatServer.Domain;
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.ws.rs.GET;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -13,9 +17,11 @@ import javax.xml.bind.annotation.XmlRootElement;
  *
  * @author Humanic
  */
+@Entity
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-public class User {
+public class User implements Serializable{
+    @Id @GeneratedValue
     Long id;
     String name;
     Conversation conversation;

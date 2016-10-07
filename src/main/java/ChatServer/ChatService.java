@@ -39,7 +39,8 @@ public class ChatService {
             }
         }
     }
-    @GET
+    
+    
     public String getHelloWorld(){
         return "Hello World";
     }
@@ -48,9 +49,10 @@ public class ChatService {
     public User getUser(@QueryParam("user") User user){
         return new User("Jorgen");
     }
+    
     @GET
     @Path("{users}")
-    public List<User> findUser(@PathParam("user") String name){
+    public List<User> findUser(@PathParam("users") String name){
         return users;
     }
     
