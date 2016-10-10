@@ -22,27 +22,34 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class User implements Serializable{
     @Id @GeneratedValue
-    Long id;
-    String name;
+    private Long uid;
+    private String name;
+    private String photoUri;
+    
     Conversation conversation;
     
-    public User(){
-        conversation = new Conversation();
+    
+    protected User(){}
+    
+    public User(Long uid, String name, String photoUri){
+        this.uid = uid;
+        this.name = name;
+        this.photoUri = photoUri;
     }
     
     public User(String name){
         this.name = name;
     }
     
-    public User(Long id, String name, Conversation conversation){
-    this.id = id;
+    public User(Long id, String name){
+    this.uid = id;
     this.name = name;
-    this.conversation = conversation;
     }
     
-    @GET
-    public Long getId(){
-        return id;
+    public User(Long id, String name, Conversation conversation){
+    this.uid = id;
+    this.name = name;
+    this.conversation = conversation;
     }
     
     @GET
@@ -54,4 +61,14 @@ public class User implements Serializable{
     public Conversation getConversation(){
     return conversation;
     }
+    
+    @GET
+    public Long getUid() {
+        return uid;
+    }
+    
+    @GET
+    public String getPhotoUri() {
+        return photoUri;
+    }   
 }

@@ -5,7 +5,6 @@
  */
 package ChatServer.Domain;
 
-import static com.oracle.webservices.internal.api.EnvelopeStyle.Style.XML;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;

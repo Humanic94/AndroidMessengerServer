@@ -26,15 +26,17 @@ public class Conversation implements Serializable{
     @Id @GeneratedValue
     private Long conversationId;
     private String conversationName;
-    private List<Message> conversation;
+    private List<Message> messages;
+    private User owner;
+    private List<User> recipients;
     
     protected Conversation(){
         
     }
-    public Conversation(Long conversationId, String conversationName){
-        conversation = new ArrayList<Message>();
-        this.conversationId = conversationId;
-        this.conversationName = conversationName;
+    public Conversation(User owner, List<User> recipients, List<Message> messages){
+        this.owner = owner;
+        this.recipients = recipients;
+        this.messages = messages;
     }
     
     @GET
@@ -47,9 +49,24 @@ public class Conversation implements Serializable{
     return conversationName;
     }
     
+    /*
     @GET
     public List<Message> getConversation(){
     return conversation;
     }
+    */
+    @GET
+    public List<Message> getMessages() {
+        return messages;
+    }
     
+    @GET
+    public User getOwner() {
+        return owner;
+    }
+    
+    @GET
+    public List<User> getRecipients() {
+        return recipients;
+    }
 }

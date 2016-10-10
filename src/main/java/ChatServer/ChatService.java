@@ -5,6 +5,7 @@
  */
 package ChatServer;
 import ChatServer.Domain.Conversation;
+import ChatServer.Domain.Message;
 import ChatServer.Domain.User;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,16 +22,21 @@ import javax.ws.rs.QueryParam;
 @Produces("application/json")
 public class ChatService {
     private List<User> users;
-    
+    private List<Conversation> conversations;
+    private List<Message> messages;
     public ChatService(){
-        users = new ArrayList();
+        users = new ArrayList<User>();
         users.add(new User("newUser"));
+        messages = new ArrayList<Message>();
+        conversations = new ArrayList<Conversation>();
+        conversations.add(new Conversation(users.get(0), users, messages));
+    }
+    //Adds a new user
+    public void addUser(Long id, String name){
+        users.add(new User(id, name));
     }
     
-    public void addUser(Long id, String name, Conversation conversation){
-        users.add(new User(id, name, conversation));
-    }
-    
+    //Removes user by name
     public void removeUser(String name){
         for(int i = 0; i == users.size(); i++){
             User user = users.get(i);
@@ -39,21 +45,57 @@ public class ChatService {
             }
         }
     }
-    
-    
     public String getHelloWorld(){
         return "Hello World";
     }
     
-    @GET
-    public User getUser(@QueryParam("user") User user){
+    /*
+    public User getUserById(@QueryParam("user") Long Id){ //User user
+        
+        //Searches through the list for a user by the given name.
+        for(int i = 0; i == users.size(); i++){
+            User user = users.get(i);
+            if(Id == user.getId()){
+                return users.get(i);
+            }
+        }
+        //default
         return new User("Jorgen");
     }
+    */
+    //ByName
+    @GET   
+    public User getUser(@QueryParam("user") User user){ //User user
+        /*
+        //Searches through the list for a user by the given name.
+        for(int i = 0; i == users.size(); i++){
+            User user = users.get(i);
+            if(name == user.getName()){
+                return users.get(i);
+            }
+        }
+        */
+        //default
+        return new User("Jorgen");
+    }
+    
+    @GET
+    @Path("users")
+    public List<User> getAllUsers(@PathParam("users") User user){
+        return users;
+    }
+    
     
     @GET
     @Path("{users}")
     public List<User> findUser(@PathParam("users") String name){
         return users;
+    }
+    
+    
+    @Path("{conversations}")
+    public List<Conversation> getAllConversations(){
+        return conversations;
     }
     
 }
