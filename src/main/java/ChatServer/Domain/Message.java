@@ -58,6 +58,22 @@ public class Message implements Serializable {
     public Date getTimestamp() {
         return timestamp;
     }
+
+    public void setMessageId(Long messageId) {
+        this.messageId = messageId;
+    }
+
+    public void setSender(User sender) {
+        this.sender = sender;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public void setTimestamp(Date timestamp) {
+        this.timestamp = timestamp;
+    }
     
     
 }

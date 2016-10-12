@@ -39,7 +39,6 @@ public class ChatService {
     
     //CREATE/////(PUT)
     //Adds a new user
-    @PUT
     public void createUser(Long id, String name){
         users.add(new User(id, name));
     }

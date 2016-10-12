@@ -27,7 +27,8 @@ public class User implements Serializable{
     private String photoUri;
     
     
-    protected User(){}
+    protected User(){
+    }
     
     public User(Long uid, String name, String photoUri){
         this.uid = uid;
