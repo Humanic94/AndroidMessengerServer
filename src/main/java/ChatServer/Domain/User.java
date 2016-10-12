@@ -26,8 +26,6 @@ public class User implements Serializable{
     private String name;
     private String photoUri;
     
-    Conversation conversation;
-    
     
     protected User(){}
     
@@ -41,25 +39,14 @@ public class User implements Serializable{
         this.name = name;
     }
     
-    public User(Long id, String name){
-    this.uid = id;
+    public User(Long uid, String name){
+    this.uid = uid;
     this.name = name;
-    }
-    
-    public User(Long id, String name, Conversation conversation){
-    this.uid = id;
-    this.name = name;
-    this.conversation = conversation;
     }
     
     @GET
     public String getName(){
     return name;
-    }
-    
-    @GET
-    public Conversation getConversation(){
-    return conversation;
     }
     
     @GET

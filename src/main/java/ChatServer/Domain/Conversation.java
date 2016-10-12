@@ -5,7 +5,6 @@
  */
 package ChatServer.Domain;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -49,12 +48,6 @@ public class Conversation implements Serializable{
     return conversationName;
     }
     
-    /*
-    @GET
-    public List<Message> getConversation(){
-    return conversation;
-    }
-    */
     @GET
     public List<Message> getMessages() {
         return messages;

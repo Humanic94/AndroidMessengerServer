@@ -9,7 +9,10 @@ import ChatServer.Domain.Message;
 import ChatServer.Domain.User;
 import java.util.ArrayList;
 import java.util.List;
+import javax.ejb.Stateless;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -18,6 +21,7 @@ import javax.ws.rs.QueryParam;
  *
  * @author Humanic
  */
+@Stateless
 @Path("Chat")
 @Produces("application/json")
 public class ChatService {
@@ -27,15 +31,20 @@ public class ChatService {
     public ChatService(){
         users = new ArrayList<User>();
         users.add(new User("newUser"));
+        users.add(new User("delUser"));
         messages = new ArrayList<Message>();
         conversations = new ArrayList<Conversation>();
         conversations.add(new Conversation(users.get(0), users, messages));
     }
+    
+    //CREATE/////(PUT)
     //Adds a new user
-    public void addUser(Long id, String name){
+    @PUT
+    public void createUser(Long id, String name){
         users.add(new User(id, name));
     }
     
+    //DELETE/////(DELETE)
     //Removes user by name
     public void removeUser(String name){
         for(int i = 0; i == users.size(); i++){
@@ -45,41 +54,31 @@ public class ChatService {
             }
         }
     }
+    //UPDATE/////(POST)
+    
+    
+    //READ//////(GET)
     public String getHelloWorld(){
         return "Hello World";
     }
+    //create, read, update, delete operations: PUT, GET, POST, and DELETE.
     
-    /*
-    public User getUserById(@QueryParam("user") Long Id){ //User user
+    @GET
+    public User getUser(@QueryParam("user") User user){ //User user
         
         //Searches through the list for a user by the given name.
         for(int i = 0; i == users.size(); i++){
-            User user = users.get(i);
-            if(Id == user.getId()){
+            User tempUser = users.get(i);
+            if(user.getName() == tempUser.getName()){
                 return users.get(i);
             }
-        }
-        //default
-        return new User("Jorgen");
-    }
-    */
-    //ByName
-    @GET   
-    public User getUser(@QueryParam("user") User user){ //User user
-        /*
-        //Searches through the list for a user by the given name.
-        for(int i = 0; i == users.size(); i++){
-            User user = users.get(i);
-            if(name == user.getName()){
-                return users.get(i);
-            }
-        }
-        */
+        }    
         //default
         return new User("Jorgen");
     }
     
     @GET
+    @Produces("text/xml")
     @Path("users")
     public List<User> getAllUsers(@PathParam("users") User user){
         return users;
@@ -92,9 +91,8 @@ public class ChatService {
         return users;
     }
     
-    
     @Path("{conversations}")
-    public List<Conversation> getAllConversations(){
+    public List<Conversation> getAllConversations(@PathParam("conversations") Conversation conversation){
         return conversations;
     }
     
