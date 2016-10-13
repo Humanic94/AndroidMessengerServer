@@ -58,5 +58,18 @@ public class User implements Serializable{
     @GET
     public String getPhotoUri() {
         return photoUri;
-    }   
+    }  
+
+    public void setUid(long uid) {
+        this.uid = uid;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPhotoUri(String photoUri) {
+        this.photoUri = photoUri;
+    }
+    
 }

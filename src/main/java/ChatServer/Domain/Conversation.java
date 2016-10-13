@@ -32,6 +32,12 @@ public class Conversation implements Serializable{
     protected Conversation(){
         
     }
+    public Conversation(String conversationName, User owner, List<User> recipients, List<Message> messages){
+        this.conversationName = conversationName;
+        this.owner = owner;
+        this.recipients = recipients;
+        this.messages = messages;
+    }
     public Conversation(User owner, List<User> recipients, List<Message> messages){
         this.owner = owner;
         this.recipients = recipients;
@@ -62,4 +68,25 @@ public class Conversation implements Serializable{
     public List<User> getRecipients() {
         return recipients;
     }
+
+    public void setConversationId(Long conversationId) {
+        this.conversationId = conversationId;
+    }
+
+    public void setConversationName(String conversationName) {
+        this.conversationName = conversationName;
+    }
+
+    public void setMessages(List<Message> messages) {
+        this.messages = messages;
+    }
+
+    public void setOwner(User owner) {
+        this.owner = owner;
+    }
+
+    public void setRecipients(List<User> recipients) {
+        this.recipients = recipients;
+    }
+    
 }

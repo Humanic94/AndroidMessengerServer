@@ -20,18 +20,18 @@ import java.util.Map;
  */
 public class DatabaseClass {
     private static Map<Long, Message> messages = new HashMap<>();
-    private static Map<Long, User> users = new HashMap<>();
-    private static Map<Long, Conversation> conversations = new HashMap<>();
+    private static Map<String, User> users = new HashMap<>();
+    private static Map<String, Conversation> conversations = new HashMap<>();
     
     public static Map<Long, Message> getMessages(){
         return messages;
     }
     
-    public static Map<Long, User> getUsers(){
+    public static Map<String, User> getUsers(){
         return users;
     }
     
-    public static Map<Long, Conversation> getConversations(){
+    public static Map<String, Conversation> getConversations(){
         return conversations;
     }
 }

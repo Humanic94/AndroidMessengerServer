@@ -63,7 +63,7 @@ public class ChatService {
     //create, read, update, delete operations: PUT, GET, POST, and DELETE.
     
     @GET
-    public User getUser(@QueryParam("user") User user){ //User user
+    public User getUser(@QueryParam("userrr") User user){ //User user
         
         //Searches through the list for a user by the given name.
         for(int i = 0; i == users.size(); i++){
@@ -78,19 +78,19 @@ public class ChatService {
     
     @GET
     @Produces("text/xml")
-    @Path("users")
+    @Path("usersss")
     public List<User> getAllUsers(@PathParam("users") User user){
         return users;
     }
     
     
     @GET
-    @Path("{users}")
+    @Path("{userssss}")
     public List<User> findUser(@PathParam("users") String name){
         return users;
     }
     
-    @Path("{conversations}")
+    @Path("{conversationsss}")
     public List<Conversation> getAllConversations(@PathParam("conversations") Conversation conversation){
         return conversations;
     }
